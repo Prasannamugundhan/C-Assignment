@@ -1,0 +1,73 @@
+using System;
+class program {
+  static void Main() {
+      string userDetails;
+
+            User[] usersDetails = new User[2];
+
+            for (int i = 0; i < usersDetails.Length; i++)
+            {
+                Console.WriteLine("Enter User {0} Details:", i + 1);                
+                userDetails = Console.ReadLine();
+
+                string[] Users_de = userDetails.Split(' ');
+
+                usersDetails[i] = new User(Users_de[0], Users_de[1], Users_de[2]);
+            }
+
+            for (int i = 0; i < usersDetails.Length; i++)
+            {
+                Console.WriteLine("User {0}: ", i + 1);
+
+                Console.WriteLine(usersDetails[i]);
+            }
+
+            if (usersDetails[0].Equals(usersDetails[1]))
+            {
+                Console.WriteLine("User {0} is same as user {1}", 1, 2);
+            }
+            else
+            {
+                Console.WriteLine("User {0} is different from user {1}", 1, 2);
+            }
+  }
+}
+public class User{
+    //members
+    private string username;
+     private string mailId;
+      private string password;
+  //constructors
+  public User()
+  {
+      
+  }
+  
+  public User(string username,string mailId,string password)
+  {
+      Username=username;
+      MailId=mailId;
+      Password=password;
+  }
+  //properties
+ public string Username { get=> username; set=> username=value; }
+ public string MailId { get=> mailId; set=> mailId=value; }
+   public string Password { get=> password; set=> password=value; }
+    
+    //override
+    public override string ToString()
+    {
+            return string.Format("Username: " + this.Username + "\nEmail: " + this.MailId + "\nPassword: " + this.password);
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            User obj_user = (User)obj;
+            return this.username.Equals(obj_user.Username);
+        }
+	public override int GetHashCode()		
+	{
+		return base.GetHashCode();
+    }
+}
